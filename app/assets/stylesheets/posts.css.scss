@@ -1,0 +1,16 @@
+.post {
+  border:1px solid #eaeaea;
+  padding:1em;
+  .title {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom:1em;
+  }
+  .content {
+
+  }
+  .user {
+    border-top: 1px solid #eaeaea;
+    margin-top: 1em;
+    text-align: right;
+  }
+}

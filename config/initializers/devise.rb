@@ -265,4 +265,6 @@ Devise.setup do |config|
 	config.omniauth :facebook, ENV["FB_APP_ID"], ENV["FB_APP_SECRET"],
 									:info_fields => 'email, name',
 									:secure_image_url => 'true'
+	config.omniauth :naver, ENV["NAVER_CLIENT_ID"], ENV["NAVER_CLIENT_SECRET"]
+	config.omniauth :kakao, ENV["KAKAO_CLIENT_ID"]
 end

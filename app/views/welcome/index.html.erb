@@ -1,12 +1,14 @@
 <center>
-
-<div style="margin-bottom:2em;">
+<div style="margin: 50px 20px 50px 20px;">
     <%= image_tag "logo_educorez.png", width: "600", style: "margin:2em 0"%>
 </div>
-<% if user_signed_in? %>
-  <p><%= link_to "로그아웃", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?" }, class: 'btn btn-default'%></p>
-<% else %>
-  <p><%= link_to "로그인", new_user_session_path, class: 'btn btn-default' %></p>
-  <p><%= link_to "페이스북으로 로그인", user_omniauth_authorize_path(:facebook) %></p>
-<% end %>
-</center>`
+</center>
+<!--
+<div class="platform_wrapper">
+	<div class="pot_player_wrapper">
+		<iframe src="http://player.twitch.tv/?channel=onmumunet" frameborder="0" scrolling="no" height="900" width="1450"></iframe><a href="http://www.twitch.tv/onmumunet?tt_medium=live_embed&tt_content=text_link" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px;text-decoration:underline;">Watch live video from onmumunet on www.twitch.tv</a>
+	</div>
+	<div class="chat_wrapper">
+		<iframe src="http://www.twitch.tv/onmumunet/chat?popout=" frameborder="0" scrolling="no" height="900" width="350"></iframe>
+	</div>
+<div> -->

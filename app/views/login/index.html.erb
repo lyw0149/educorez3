@@ -1,2 +1,13 @@
-<h1>Login#index</h1>
-<p>Find me in app/views/login/index.html.erb</p>
+<center>
+<div class="logo">
+	<%= link_to image_tag("logo_educorez.png", width: "600"), "/" %>
+</div>
+<div class="login_message" style="margin-bottom : 0px">
+	<h1>LOGIN WITH...</h1>
+</div>
+<div class="wrapper_login">
+	<div class="login_button"><%= link_to image_tag("facebook_login_button.png", align: "center", width: "400"), user_omniauth_authorize_path(:facebook) %></div>
+	<div class="login_button"><%= link_to image_tag("naver_login_button.png", align: "center", width: "400"), user_omniauth_authorize_path(:naver) %></div>	
+	<div class="login_button"><%= link_to image_tag("kakao_login_button.png", align: "center", width: "400"), user_omniauth_authorize_path(:kakao) %></div>
+</div>
+</center>

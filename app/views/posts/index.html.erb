@@ -1,31 +1,55 @@
-<h2>Listing posts</h2>
+<div class="container">
+	<h2>자유게시판</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-md-1">번호</th>
+				<th class="col-md-8">제목</th>
+				<th class="col-md-1">글쓴이</th>
+				<th class="col-md-1">날짜</th>
+				<th class="col-md-1">조회</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @posts.each do |post| %>
+				<tr>
+					<td><%= post.id %></td>
+					<td><%= link_to post.title, post %></td>
+					<td><%= post.user.name %></td>
+					<td><%= (post.created_at+9.hours).strftime("%Y.%m.%d") %></td>
+					<td><%= post.impressionist_count %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<div id="posts" style="display:none;"></div>
+	<!-- <table class="table">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Created by</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Created by</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td class="col-md-6 col-xs-6"><%= post.title %></td>
-        <td><%= post.user.present? ? post.user.email : "n/a" %>, <%= time_ago_in_words(post.created_at) %> ago</td>
-        <td>
-					<%= link_to icon('eye-open'), post %>&nbsp;
-<% if user_signed_in? %>
-  <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by? current_user %>&nbsp;
-  <%= link_to icon('trash'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %>
-<% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path, class: "btn btn-default" %>
+		<tbody>
+			<% @posts.each do |post| %>
+				<tr>
+					<td class="col-md-6 col-xs-6"><%= post.title %></td>
+					<td><%= post.user.present? ? post.user.name : "n/a" %>, <%= post.created_at %></td>
+					<td>
+						<%= link_to icon('eye-open'), post %>&nbsp;
+						<% if user_signed_in? %>
+							<%= link_to icon('edit'), edit_post_path(post) if post.updatable_by? current_user %>&nbsp;
+							<%= link_to icon('trash'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	-->
+	<br>
+	<%= link_to 'New Post', new_post_path, class: "btn btn-default" %>
+	<!--<%= link_to "Delete Post", @posts.last, class: "btn btn-default", remote: true, method: :delete, data: { confirm: "삭제하시겠습니까?"}%>-->
+</div>

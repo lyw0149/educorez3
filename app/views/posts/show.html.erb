@@ -1,18 +1,18 @@
 <div class='post'>
   <div class="title">
-    <h3>Title:
-    <%= @post.title %></h3>
+    <h3>제목 : <%= @post.title %></h3>
   </div>
-
   <div class="content">
     <%= simple_format @post.content %>
   </div>
-
   <div class="user">
     <strong>Created by </strong>
-    <%= @post.user.present? ? @post.user.email : "an anonymous user" %>,
-    <%= time_ago_in_words(@post.created_at) %> ago
+    <%= @post.user.present? ? @post.user.name : "an anonymous user" %>,
+    <%= (@post.created_at+9.hours).strftime("%Y.%m.%d %H:%M:%S") %>
   </div>
+	<div class="view_counter">
+		<p>조회수:<%= @post.impressionist_count %></p>
+	</div>
 </div>
 
 <hr>

@@ -4,14 +4,14 @@
   <%= f.error_notification %>
 
   <div class="form-group">
-    <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+    <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control' } %>
   </div>
   <div class="form-group">
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
   </div>
-
+	<!--
   <div class="form-group">
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, input_html: { class: 'form-control' } %>
   </div>
@@ -21,6 +21,7 @@
   <div class="form-group">
     <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { class: 'form-control' } %>
   </div>
+	-->
   <%= f.button :submit, "Update", class: 'btn btn-default' %>
 <% end %>
 

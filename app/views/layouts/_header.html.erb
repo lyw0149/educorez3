@@ -1,0 +1,47 @@
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="nav_container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">EDUCOREZ</a>
+        </div>
+				<div class="navbar-collapse collapse">
+				<div class="col-md-2">
+				</div>
+				<ul class="nav navbar-nav">
+					<li><%= link_to "자유게시판", "/posts" %></li>
+					<li><%= link_to "과외찾기", "/extras" %></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<% if user_signed_in? %>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<%= current_user.email_verified? ? image_tag(current_user.image.url(:thumb), :width => 20, :height => 20) + current_user.name : "회원가입 중..."   %>
+					<%= current_user.identities.size == 0 ? "" : "(via " + current_user.identities.map(&:provider).join("/").titleize + ")" %>
+					<b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+						<li><%= link_to "My Profile", "/mypage/profile" %></li>
+						<li><%= link_to "Roles : " + user_roles(current_user), '#' %></li>
+					</ul>
+				</li>
+				<li><%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+			<% else %>
+				<ul class="nav navbar-nav">
+					<li><%= link_to "로그인", "/login/index" %></li>
+				</ul>
+				<!--<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in
+					 <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><%= link_to "with Auth Blog", new_user_session_path %></li>
+						<li><%= link_to "with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+						<li><%= link_to "with Naver", user_omniauth_authorize_path(:naver) %></li>
+						<li><%= link_to "with Kakaotalk", user_omniauth_authorize_path(:kakao) %></li>
+					</ul>
+				</li>
+				<li><%= link_to "Sign up", new_user_registration_path %></li>-->
+			<% end %>
+		</ul>
+		</div>
+	</div>
+</div>

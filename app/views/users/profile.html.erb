@@ -1,0 +1,22 @@
+<div class="container">
+	<% if !flash[:alert].nil? %>
+	<div class="aert alert-danger">
+		<%= flash[:alert] %>
+	</div>
+	<% end %>
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4 text-center">
+			<h3 class="form-heading">Edit User</h3>
+			<form action="users/profile_complete" method="post">
+				<input type="hidden" name="id" value="<%= @user.id %>">
+				<p><input class="form-input" type="text" name="name" value="<%= @user.name %>"></p>
+				<p><input class="form-input" type="text" name="email" value="<%= @user.email %>"></p>
+			<input class="btn btn-lg btn-block" type="submit" value="Update">
+			</form>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+</div>

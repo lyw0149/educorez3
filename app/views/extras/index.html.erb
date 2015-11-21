@@ -1,4 +1,83 @@
-<p id="notice"><%= notice %></p>
+<div id="map" style="width:800px;height:500px;"></div>
+<!-- services와 clusterer 라이브러리 불러오기 -->
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=bbd545cc747d5081793abc219c1d74c4&libraries=services,clusterer"></script>
+<script>
+var infowindow = new daum.maps.InfoWindow({zIndex:1});
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new daum.maps.LatLng(37.53569162926515, 126.94627494388307), // 지도의 중심좌표
+        level: 7 // 지도의 확대 레벨
+    };
+
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new daum.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new daum.maps.ZoomControl();
+map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+// 장소 검색 객체를 생성합니다
+var ps = new daum.maps.services.Places(); 
+daum.maps.event.addListener(map, 'idle', function() { 
+	// 키워드로 장소를 검색합니다
+	var end_point = map.getCenter();
+	console.log(end_point.zb, end_point.Ab);
+	var json_url= "https://apis.daum.net/local/v1/search/keyword.json?apikey=bbd545cc747d5081793abc219c1d74c4&query=대학교&location="+end_point.Ab+","+end_point.zb+"&radius=20000&page=3";
+
+	jQuery.getJSON(json_url,
+	function(data){
+		for (var i=0,len=data.places.length;i<len; i++){
+			displayMarker(data.places[i]);
+			bounds.extend(new daum.maps.LatLng(data.places[i].latitude, data.places[i].longitude))
+			}
+	});
+//	ps.keywordSearch('대학교', placesSearchCB); 
+});
+
+	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+	function placesSearchCB (status, data, pagination) {
+			if (status === daum.maps.services.Status.OK) {
+
+					// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+					// LatLngBounds 객체에 좌표를 추가합니다
+					var bounds = new daum.maps.LatLngBounds();
+
+					for (var i=0; i<data.places.length; i++) {
+							displayMarker(data.places[i]);    
+							bounds.extend(new daum.maps.LatLng(data.places[i].latitude, data.places[i].longitude));
+					}       
+
+					// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+			//    map.setBounds(bounds);
+			} 
+	}
+
+	// 지도에 마커를 표시하는 함수입니다
+	function displayMarker(place) {
+			
+			// 마커를 생성하고 지도에 표시합니다
+			var marker = new daum.maps.Marker({
+					map: map,
+					position: new daum.maps.LatLng(place.latitude, place.longitude) 
+			});
+
+			// 마커에 클릭이벤트를 등록합니다
+			daum.maps.event.addListener(marker, 'click', function() {
+					// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+					infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.title + '</div>');
+					infowindow.open(map, marker);
+			});
+	}
+	
+;
+</script>
+<!--<p id="notice"><%= notice %></p>
 
 <h1>Listing Extras</h1>
 
@@ -22,4 +101,4 @@
 
 <br>
 
-<%= link_to 'New Extra', new_extra_path %>
+<%= link_to 'New Extra', new_extra_path %> -->

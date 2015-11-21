@@ -1,16 +1,25 @@
 class PostsController < ApplicationController
+	impressionist :action=>[:show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, only: [ :new, :edit, :create, :update, :destroy ]
+	#before_action :authenticate_user!, only: [ :new, :edit, :create, :update, :destroy ]
+	before_action :login_check
+	skip_before_action :login_check, :only => [:index, :show,]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.order(created_at: :desc)
+		respond_to do |format|
+			format.html
+			format.json
+		end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+		@post=Post.find(params[:id])	
+		impressionist(@post)
   end
 
   # GET /posts/new

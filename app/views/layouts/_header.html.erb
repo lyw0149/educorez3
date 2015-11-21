@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="nav_container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">EDUCOREZ</a>
         </div>
@@ -9,7 +9,7 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li><%= link_to "자유게시판", "/posts" %></li>
-					<li><%= link_to "과외", "/extras" %></li>
+					<li><%= link_to "과외찾기", "/extras" %></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<% if user_signed_in? %>

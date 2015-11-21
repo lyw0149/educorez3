@@ -1,4 +1,12 @@
 source 'https://rubygems.org'
+gem "dropzonejs-rails"
+gem "paperclip"
+gem "impressionist"
+gem "simple_form_fancy_uploads"
+gem 'carrierwave'
+gem 'mini_magick'
+gem "rmagick"
+gem 'actionmailer'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-naver'

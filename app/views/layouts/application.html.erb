@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<meta charset="utf-8">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko" xmlns:v="urn:schemas-microsoft-com:vml">
+	<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=fb9295e6477836f9bae7022d25e2d5d8&query=nhn"></script>
+	<script type="text/javascript">
+  	try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}
+  </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="description" content="">
   <meta name="author" content="">
+	
   <title>Educorez</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+	
+	<script type="text/javascript" href="/assets/dropzone.js"></script>
+	<link rel="stlesheet" type="text/css" href="/assets/dropzone.css"></script>
+	<script src="//cdn.poesis.kr/post/search.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.poesis.kr/post/search.css?v=3.2.0">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 	<%= render partial: "layouts/header" if @show_nav%>
@@ -18,5 +27,6 @@
 	<div class="container">
 		<%= yield %>
 	</div>
+</body>
 </body>
 </html>

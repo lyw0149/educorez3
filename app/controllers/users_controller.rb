@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, :finish_signup
-
+  before_action :set_user, :finish_signup	
+	def update
+	end
   # ...
-
   def finish_signup
     if request.patch? && params[:user] #&& params[:user][:email]
       if current_user.update(user_params)

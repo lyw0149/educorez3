@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.integer :user_id
-
+			t.integer :impressions_count, :default => 0
       t.timestamps
     end
     add_index :posts, :user_id

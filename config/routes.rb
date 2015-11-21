@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  resources :extras
+  get 'mypage/profile'
+	post 'mypage/profile_complete'
+  get 'login/index'
   resources :posts
-	devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+	devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+	match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

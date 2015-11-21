@@ -1,13 +1,21 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-	config.action_mailer.default_url_options = {:host = 'zerocorez.com'}
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  :address => "0.0.0.0",
-  :port    => 80,
-  :domain  => 'zerocorez.com'
-}
+	
+	config.action_mailer.delivery_method = :smtp
+	config.action_mailer.perform_deliveries = true
+	config.action_mailer.raise_deliveries = false
+	config.action_mailer.default :charset => "utf-8"
+	config.action_mailer.default_url_options = { host: 'zerocorez.com' }
+	config.action_mailer.smtp_settings = {
+		address: "smtp.gmail.com",
+		port: 587,
+		domain: "zerocorez.com",
+		authentiacation: "plain",
+		enable_starttls_auto: true,
+		user_name: ENV["GMAIL_USERNAME"],
+		password: ENV["GMAIL_PASSWORD"]
+	}
   # Code is not reloaded between requests.
   config.cache_classes = true
 

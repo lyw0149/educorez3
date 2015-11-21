@@ -2,9 +2,9 @@ module ApplicationHelper
 	def icon(shape)
   "<span class='glyphicon glyphicon-#{shape}'></span>".html_safe
 	end
-def user_roles(user)
-  user.roles.map(&:name).join(',').titleize
-end
+	def user_roles(user)
+		user.roles.map(&:name).join(',').titleize
+	end
   def bootstrap_class_for(flash_type)
     case flash_type
       when "success"

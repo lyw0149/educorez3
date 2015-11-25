@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem "roo"
 gem "dropzonejs-rails"
 gem "paperclip"
 gem "impressionist"
@@ -11,6 +12,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-naver'
 gem 'omniauth-kakao'
+gem "omniauth-daum"
 gem 'dotenv-rails'
 # 회원인증 및 권한설정을 위한 젬
 gem 'devise' # 회원가입 및 인증

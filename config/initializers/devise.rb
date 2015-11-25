@@ -267,4 +267,5 @@ Devise.setup do |config|
 									:secure_image_url => 'true'
 	config.omniauth :naver, ENV["NAVER_CLIENT_ID"], ENV["NAVER_CLIENT_SECRET"]
 	config.omniauth :kakao, ENV["KAKAO_CLIENT_ID"]
+	config.omniauth :daum, ENV["DAUM_CLIENT_ID"], ENV["DAUM_CLIENT_SECRET"]
 end

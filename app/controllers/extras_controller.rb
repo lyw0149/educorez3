@@ -1,12 +1,13 @@
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
 	before_action :login_check
-	skip_before_action :login_check, :only => [:new, :edit, :create, :update, :destroy ]
+	skip_before_action :login_check, :only => [:index]
 
   # GET /extras
   # GET /extras.json
   def index
-    @extras = Extra.all
+		@subways=Subway.all	
+		@colleges=College.all	
   end
 
   # GET /extras/1

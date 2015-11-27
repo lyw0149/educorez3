@@ -267,4 +267,6 @@ Devise.setup do |config|
 									:secure_image_url => 'true'
 	config.omniauth :naver, ENV["NAVER_CLIENT_ID"], ENV["NAVER_CLIENT_SECRET"]
 	config.omniauth :kakao, ENV["KAKAO_CLIENT_ID"]
+	config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"],
+									scope: 'profile, email', image_aspect_ratio: 'square', image_size: 48, access_type: 'online'
 end

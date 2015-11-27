@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       if current_user.update(user_params)
         current_user.skip_reconfirmation!
         sign_in(current_user, :bypass => true)
-        redirect_to '/', notice: 'Your profile was successfully updated.'
+        redirect_to :back, notice: '확인 이메일이 전송되었습니다.'
       else
         @show_errors = true
       end

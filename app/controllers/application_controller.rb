@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	
 	def login_check
 		if current_user.nil?
-			redirect_to "/login/index"
+			redirect_to new_user_session_path
 		end
 	end
 

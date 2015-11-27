@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116215649) do
+ActiveRecord::Schema.define(version: 20151123070546) do
+
+  create_table "colleges", force: :cascade do |t|
+    t.string   "name"
+    t.string   "area"
+    t.string   "address"
+    t.float    "location_x"
+    t.float    "location_y"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "extras", force: :cascade do |t|
     t.string   "title"
@@ -76,6 +86,17 @@ ActiveRecord::Schema.define(version: 20151116215649) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "subways", force: :cascade do |t|
+    t.string   "name"
+    t.string   "line"
+    t.string   "area"
+    t.string   "address"
+    t.float    "location_y"
+    t.float    "location_x"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

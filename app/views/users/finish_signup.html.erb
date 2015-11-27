@@ -1,22 +1,37 @@
 <div id="add-email" class="container">
-  <h2>Add Email</h2>
+  <h2>이메일 입력</h2>
+	<% if @show_errors && current_user.errors.any? %>
+		<div id="error_explanation">
+			<% current_user.errors.full_messages.each do |msg| %>
+				<%= msg %><br>
+			<% end %>
+		</div>
+	<% end %>
+	<% if current_user.unconfirmed_email? %>
+		<%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
+			<div class="form-group">
+				<%= f.label	:email, "확인 이메일 재전송" %>
+				<div class="controls">
+					<%= f.text_field :email, :value => current_user.unconfirmed_email, class: 'form-control input-lg', :readonly => true %>
+					<p class="help-block">입력하신 이메일 주소로 확인 이메일이 전송됩니다.</p>
+				</div>
+			</div>
+			<div class="actions">
+				<%= f.submit '전송', :class => "btn btn-default" %>
+			</div>
+		<% end %>
+	<% end %>
+	<br><br>
   <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
-    <% if @show_errors && current_user.errors.any? %>
-      <div id="error_explanation">
-        <% current_user.errors.full_messages.each do |msg| %>
-          <%= msg %><br>
-        <% end %>
-      </div>
-    <% end %>
     <div class="form-group">
-      <%= f.label :email %>
+      <%= f.label :email, "새로운 이메일로 확인 이메일 전송" %>
       <div class="controls">
         <%= f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg', placeholder: 'Example: email@me.com' %>
-        <p class="help-block">Please confirm your email address. No spam.</p>
+        <p class="help-block">입력하신 이메일 주소로 확인 이메일이 전송됩니다.</p>
       </div>
     </div>
-    <div class="actions">
-      <%= f.submit 'Continue', :class => 'btn btn-default' %>
-    </div>
+    <span class="actions">
+      <%= f.submit '전송', :class => 'btn btn-default' %>
+    </span>
   <% end %>
 </div>

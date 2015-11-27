@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,:confirmable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :rememberable, :trackable, :validatable,
 					:omniauthable
 	has_many :posts, dependent: :destroy
 	has_many :identities, dependent: :destroy
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 	after_create :set_default_role
- TEMP_EMAIL_PREFIX = 'change@me'
+  TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
  def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX

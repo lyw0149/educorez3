@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 	#before_action :authenticate_user!, only: [ :new, :edit, :create, :update, :destroy ]
 	before_action :login_check
+	before_action :ensure_signup_complete
 	skip_before_action :login_check, :only => [:index, :show,]
+	skip_before_action :ensure_signup_complete, :only => [:index, :show]
 
   # GET /posts
   # GET /posts.json

@@ -1,8 +1,11 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<h2>회원정보수정</h2>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+ 	<p><%= resource_name %></p>
   <%= f.error_notification %>
-
+	<div id="target">
+		<%= image_tag(resource.image.url(:medium), size: '150x150') %>
+	</div>
+	<%= f.input :image ,as: :file , input_html: {id: 'image_uploader'} %>
   <div class="form-group">
     <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control' } %>
   </div>
@@ -24,7 +27,25 @@
 	-->
   <%= f.button :submit, "Update", class: 'btn btn-default' %>
 <% end %>
-
+<script>
+	$('#image_uploader').on('change', function(evernt){
+		var files = event.target.files;
+		var image = files[0];
+		var reader = new FileReader();
+		reader.onload = function(file) {
+			var img = new Image();
+			console.log(file);
+			img.src = file.target.result;
+			img.height = "150";
+			img.width = "150";
+			console.log(img);
+			$('#target').html(img);
+		}
+		reader.readAsDataURL(image);
+		console.log(files);
+	});
+</script>
+<!--
 <hr>
 
 <h3>Cancel my account</h3>
@@ -32,3 +53,4 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back, class: "btn btn-default" %>
+-->

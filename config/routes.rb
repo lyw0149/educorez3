@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  resources :extras
-  get 'mypage/profile'
-	post 'mypage/profile_complete'
-  get 'login/index'
   resources :posts
-	devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+	get "/extras" => "extras#index"
+	devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: "registrations"}
 	match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   root 'welcome#index'
 

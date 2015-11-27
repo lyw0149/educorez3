@@ -15,7 +15,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     }
   end
 
-  [:naver, :facebook, :kakao, :daum].each do |provider|
+  [:naver, :facebook, :kakao, :google_oauth2].each do |provider|
     provides_callback_for provider
   end
 
@@ -26,4 +26,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       finish_signup_path(resource)
     end
   end
+	
 end
